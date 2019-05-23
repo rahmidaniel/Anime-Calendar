@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+}
+body{
+    background-color: rgba(52, 62, 97, 0.993);
+}
+
+.column {
+    /*Desktop*/
+    float: left;
+    padding: 0 10px;
+    padding-bottom: 10px;
+}
+.row:after{
+    content: "";
+    display: table;
+    clear: both;
+    
+}
+.card{
+    width: 167px;
+    height: 310px;
+    text-align: left;
+    background-color: white;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+}
+/* Hidden for now */
+.card-back{ display: none; }
+
+#title{
+    margin-left: 12px;
+    font-size: 14px;
+    font-style: bold;
+}
+#img{transition: all .2s ease-in-out}
+#img:hover{ transform: scale(1.1); box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.4);}
