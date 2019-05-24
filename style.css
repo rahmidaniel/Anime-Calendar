@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 body{
-    background-color: rgba(52, 62, 97, 0.993);
+    background-color: #34495e;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
 }
@@ -46,7 +46,7 @@ body{
 #title{
     margin-left: 12px;
     margin-top: 0;
-    font-size: 16px;
+    font-size: 14.6px; /* Looks bad, need a fix*/
     height: 50px;
 }
 #gbutton{
