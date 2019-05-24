@@ -1,5 +1,5 @@
 {
-  "name": "mal-to-calendar",
+  "name": "anime-calendar",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "browserify app.js -o bundle.js",
     "watch": "watchify app.js -o bundle.js -v",
-    "live" : "beefy app.js --live"
+    "live": "beefy app.js --live"
   },
   "author": "Daniel Rahmi",
   "license": "MIT",

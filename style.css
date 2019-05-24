@@ -3,36 +3,64 @@
 }
 body{
     background-color: rgba(52, 62, 97, 0.993);
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
 }
-
+#header{
+    position: relative;
+    padding-top: 20%;
+    padding-bottom: 20%;
+    margin-bottom: 6px;
+    text-align: center;
+    background-color: rgb(99, 163, 214);
+}
+#welcome{
+    font-size: 500%;
+    color: rgb(170, 127, 33);
+}
+.container{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    align-content: flex-end;
+ }
 .column {
-    /*Desktop*/
     float: left;
-    padding: 0 10px;
-    padding-bottom: 10px;
-}
-.row:after{
-    content: "";
-    display: table;
-    clear: both;
-    
+    padding-right: 10px;
+    padding-bottom: 20px;
 }
 .card{
     width: 167px;
-    height: 310px;
     text-align: left;
     background-color: white;
     justify-content: space-between;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
 }
-/* Hidden for now */
-.card-back{ display: none; }
-
+.card{transition: all .2s ease-in-out}
+.card:hover{ transform: scale(1.1); box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.4);}
 #title{
     margin-left: 12px;
-    font-size: 14px;
-    font-style: bold;
+    margin-top: 0;
+    font-size: 16px;
+    height: 50px;
 }
-#img{transition: all .2s ease-in-out}
-#img:hover{ transform: scale(1.1); box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.4);}
+#gbutton{
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+}
+#gbutton:hover {
+    transition: .2s ease-in-out;
+    opacity: 0.7;
+}
+
+
+
+

@@ -33071,24 +33071,18 @@ const dataOut = malScraper.getSeason(yyyy,season).then(function cardCreator(data
             if(obj[i]['score'] !== 'N/A'){
             html += `<div class="column">
                         <div class="card">
-                        <div class="card-front">
                             <a id="link" href= "${obj[i]['link']}">
                             <img id="img" src="${obj[i]['picture']}">
                             </a>
                             <p id="title" >${obj[i]['title']}</p>
-                        </div>
-                        <div class="card-back">
-                            <p id="date">${day}</p>
-                            <p id="licensor">${obj[i]['licensor']}</p>
-                            <p id="score">${obj[i]['score']}/10</p>
-                            <p id="synopsis">${obj[i]['synopsis']}
-                        </div>
+                            
+                            <button id="gbutton">Add</button>
                         </div>
                     </div>`;
             }
         }
         //console.log(html.length); // Remove '//' to test
-        $(".row").append(html);
+        $(".container").append(html);
     }).catch((err) => console.log(err));
 });
 // CORS & CORB fix
@@ -39738,8 +39732,8 @@ function _setExports(ndebug) {
 
 module.exports = _setExports(process.env.NODE_NDEBUG);
 
-}).call(this,{"isBuffer":require("../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js")},require('_process'))
-},{"../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js":109,"_process":139,"assert":15,"stream":176,"util":188}],241:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js")},require('_process'))
+},{"../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js":109,"_process":139,"assert":15,"stream":176,"util":188}],241:[function(require,module,exports){
 
 /*!
  *  Copyright 2010 LearnBoost <dev@learnboost.com>
@@ -44278,8 +44272,8 @@ exports.update = function(arr, parent) {
 
 // module.exports = $.extend(exports);
 
-}).call(this,{"isBuffer":require("../../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js":109,"htmlparser2":352,"parse5":616}],281:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js")})
+},{"../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js":109,"htmlparser2":352,"parse5":616}],281:[function(require,module,exports){
 /**
  * Module dependencies
  */
@@ -44605,30 +44599,35 @@ exports.isHtml = function(str) {
 
 },{"./parse":280,"dom-serializer":295,"lodash/assign":542}],283:[function(require,module,exports){
 module.exports={
-  "_from": "cheerio",
+  "_args": [
+    [
+      "cheerio@1.0.0-rc.3",
+      "C:\\Users\\Bab\\Documents\\GitHub\\Anime-Calendar"
+    ]
+  ],
+  "_from": "cheerio@1.0.0-rc.3",
   "_id": "cheerio@1.0.0-rc.3",
   "_inBundle": false,
   "_integrity": "sha512-0td5ijfUPuubwLUu0OBoe98gZj8C/AA+RW3v67GPlGOrvxWjZmBXiBCRU+I8VEiNyJzjth40POfHiz2RB3gImA==",
   "_location": "/cheerio",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "cheerio",
+    "raw": "cheerio@1.0.0-rc.3",
     "name": "cheerio",
     "escapedName": "cheerio",
-    "rawSpec": "",
+    "rawSpec": "1.0.0-rc.3",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "1.0.0-rc.3"
   },
   "_requiredBy": [
-    "#USER",
-    "/"
+    "/",
+    "/mal-scraper"
   ],
   "_resolved": "https://registry.npmjs.org/cheerio/-/cheerio-1.0.0-rc.3.tgz",
-  "_shasum": "094636d425b2e9c0f4eb91a46c05630c9a1a8bf6",
-  "_spec": "cheerio",
-  "_where": "C:\\Users\\Bab\\Documents\\GitHub\\mal_to_calendar\\test",
+  "_spec": "1.0.0-rc.3",
+  "_where": "C:\\Users\\Bab\\Documents\\GitHub\\Anime-Calendar",
   "author": {
     "name": "Matt Mueller",
     "email": "mattmuelle@gmail.com",
@@ -44637,7 +44636,6 @@ module.exports={
   "bugs": {
     "url": "https://github.com/cheeriojs/cheerio/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "css-select": "~1.2.0",
     "dom-serializer": "~0.1.1",
@@ -44646,7 +44644,6 @@ module.exports={
     "lodash": "^4.15.0",
     "parse5": "^3.0.1"
   },
-  "deprecated": false,
   "description": "Tiny, fast, and elegant implementation of core jQuery designed specifically for the server",
   "devDependencies": {
     "benchmark": "^2.1.0",
@@ -44899,8 +44896,8 @@ CombinedStream.prototype._emitError = function(err) {
   this.emit('error', err);
 };
 
-}).call(this,{"isBuffer":require("../../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js":109,"delayed-stream":294,"stream":176,"util":188}],285:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js")})
+},{"../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js":109,"delayed-stream":294,"stream":176,"util":188}],285:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -45010,8 +45007,8 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 
-}).call(this,{"isBuffer":require("../../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js":109}],286:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js")})
+},{"../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js":109}],286:[function(require,module,exports){
 "use strict";
 
 module.exports = CSSselect;
@@ -52131,8 +52128,8 @@ module.exports = {
 
 };
 
-}).call(this,{"isBuffer":require("../../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js":109,"./utils":356,"assert-plus":240,"crypto":63,"http":177,"jsprim":370,"sshpk":677,"util":188}],356:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js")})
+},{"../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js":109,"./utils":356,"assert-plus":240,"crypto":63,"http":177,"jsprim":370,"sshpk":677,"util":188}],356:[function(require,module,exports){
 // Copyright 2012 Joyent, Inc.  All rights reserved.
 
 var assert = require('assert-plus');
@@ -73697,8 +73694,8 @@ const getType = (type, $) => {
         nbEp: prod.find('.eps').find('a').text().trim().replace(' eps', ''),
         releaseDate: info.find('.info').find('span').text().trim(),
         score: info.find('.scormem').find('.score').text().trim(),
-        //edit to get members watching
-        members: info.find('.scormem').find('.member.fl-r').text().trim().replace(',','')
+        //Added own to get members code RD.
+        members: info.find('.scormem').find('.member.fl-r').text().trim().replace(',', '')
       })
     }
   })
@@ -102094,8 +102091,8 @@ Key._oldVersionDetect = function (obj) {
 	return ([1, 0]);
 };
 
-}).call(this,{"isBuffer":require("../../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js":109,"./algs":658,"./dhe":660,"./ed-compat":661,"./errors":662,"./fingerprint":663,"./formats/auto":664,"./formats/dnssec":665,"./formats/pem":667,"./formats/pkcs1":668,"./formats/pkcs8":669,"./formats/putty":670,"./formats/rfc4253":671,"./formats/ssh":673,"./formats/ssh-private":672,"./private-key":679,"./signature":680,"./utils":682,"assert-plus":240,"crypto":63}],679:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js")})
+},{"../../../../../../AppData/Roaming/npm/node_modules/watchify/node_modules/is-buffer/index.js":109,"./algs":658,"./dhe":660,"./ed-compat":661,"./errors":662,"./fingerprint":663,"./formats/auto":664,"./formats/dnssec":665,"./formats/pem":667,"./formats/pkcs1":668,"./formats/pkcs8":669,"./formats/putty":670,"./formats/rfc4253":671,"./formats/ssh":673,"./formats/ssh-private":672,"./private-key":679,"./signature":680,"./utils":682,"assert-plus":240,"crypto":63}],679:[function(require,module,exports){
 // Copyright 2017 Joyent, Inc.
 
 module.exports = PrivateKey;
@@ -105063,29 +105060,34 @@ Store.prototype.getAllCookies = function(cb) {
 
 },{}],689:[function(require,module,exports){
 module.exports={
-  "_from": "tough-cookie@~2.4.3",
+  "_args": [
+    [
+      "tough-cookie@2.4.3",
+      "C:\\Users\\Bab\\Documents\\GitHub\\Anime-Calendar"
+    ]
+  ],
+  "_from": "tough-cookie@2.4.3",
   "_id": "tough-cookie@2.4.3",
   "_inBundle": false,
   "_integrity": "sha512-Q5srk/4vDM54WJsJio3XNn6K2sCG+CQ8G5Wz6bZhRZoAe/+TxjWB/GlFAnYEbkYVlON9FMk/fE3h2RLpPXo4lQ==",
   "_location": "/tough-cookie",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "tough-cookie@~2.4.3",
+    "raw": "tough-cookie@2.4.3",
     "name": "tough-cookie",
     "escapedName": "tough-cookie",
-    "rawSpec": "~2.4.3",
+    "rawSpec": "2.4.3",
     "saveSpec": null,
-    "fetchSpec": "~2.4.3"
+    "fetchSpec": "2.4.3"
   },
   "_requiredBy": [
     "/request"
   ],
   "_resolved": "https://registry.npmjs.org/tough-cookie/-/tough-cookie-2.4.3.tgz",
-  "_shasum": "53f36da3f47783b0925afa06ff9f3b165280f781",
-  "_spec": "tough-cookie@~2.4.3",
-  "_where": "C:\\Users\\Bab\\Documents\\GitHub\\mal_to_calendar\\test\\node_modules\\request",
+  "_spec": "2.4.3",
+  "_where": "C:\\Users\\Bab\\Documents\\GitHub\\Anime-Calendar",
   "author": {
     "name": "Jeremy Stashewsky",
     "email": "jstash@gmail.com"
@@ -105093,7 +105095,6 @@ module.exports={
   "bugs": {
     "url": "https://github.com/salesforce/tough-cookie/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Alexander Savin"
@@ -105118,7 +105119,6 @@ module.exports={
     "psl": "^1.1.24",
     "punycode": "^1.4.1"
   },
-  "deprecated": false,
   "description": "RFC6265 Cookies and Cookie Jar for node.js",
   "devDependencies": {
     "async": "^1.4.2",

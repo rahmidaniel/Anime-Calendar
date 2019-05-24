@@ -55,24 +55,18 @@ const dataOut = malScraper.getSeason(yyyy,season).then(function cardCreator(data
             if(obj[i]['score'] !== 'N/A'){
             html += `<div class="column">
                         <div class="card">
-                        <div class="card-front">
                             <a id="link" href= "${obj[i]['link']}">
                             <img id="img" src="${obj[i]['picture']}">
                             </a>
                             <p id="title" >${obj[i]['title']}</p>
-                        </div>
-                        <div class="card-back">
-                            <p id="date">${day}</p>
-                            <p id="licensor">${obj[i]['licensor']}</p>
-                            <p id="score">${obj[i]['score']}/10</p>
-                            <p id="synopsis">${obj[i]['synopsis']}
-                        </div>
+                            
+                            <button id="gbutton">Add</button>
                         </div>
                     </div>`;
             }
         }
         //console.log(html.length); // Remove '//' to test
-        $(".row").append(html);
+        $(".container").append(html);
     }).catch((err) => console.log(err));
 });
 // CORS & CORB fix
