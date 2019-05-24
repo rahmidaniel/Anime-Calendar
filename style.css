@@ -8,15 +8,18 @@ body{
 }
 #header{
     position: relative;
-    padding-top: 20%;
+    padding-top: 10%;
     padding-bottom: 20%;
     margin-bottom: 6px;
-    text-align: center;
-    background-color: rgb(99, 163, 214);
+    text-align: right;
+    background-image: url("img/background.jpg");
+    background-repeat: no-repeat;
+    background-size: auto;
 }
 #welcome{
-    font-size: 500%;
-    color: rgb(170, 127, 33);
+    font-size: 80px;
+    margin-right: 5%;
+    color: rgb(18, 20, 20);
 }
 .container{
     display: flex;
