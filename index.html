@@ -9,11 +9,18 @@
     <body>
         <section id="header">
             <h1 id="welcome">Anime Calendar</h1>
+            <button class='gbutton' id="authorize_button"><img src="img/btn_google_signin_light_normal_web.png"></button>
+            <button class='gbutton' id="signout_button"><img src="img/btn_google_signin_light_disabled_web.png"></button>
         </section>
-        <!-- Load content here-->
         
-        <div class= "container"></div>
+        <div class= "container"><!-- Load content here--></div>
+
+        <script type="text/javascript" src="calendar.js"></script>
         <script src="bundle.js"></script>
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script async defer src="https://apis.google.com/js/api.js"
+        onload="this.onload=function(){};handleClientLoad()"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+        </script>
     </body>
 </html>

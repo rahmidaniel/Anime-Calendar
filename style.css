@@ -12,14 +12,16 @@ body{
     padding-bottom: 20%;
     margin-bottom: 6px;
     text-align: right;
-    background-image: url("img/background.jpg");
+    background-image: url("img/background2.jpg");
     background-repeat: no-repeat;
-    background-size: auto;
+    background-position: center;
 }
 #welcome{
     font-size: 80px;
-    margin-right: 5%;
-    color: rgb(18, 20, 20);
+    margin-right: 8%;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    color: #dff9fb;
 }
 .container{
     display: flex;
@@ -41,15 +43,20 @@ body{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
 }
-.card{transition: all .2s ease-in-out}
-.card:hover{ transform: scale(1.1); box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.4);}
-#title{
-    margin-left: 12px;
-    margin-top: 0;
-    font-size: 14.6px; /* Looks bad, need a fix*/
-    height: 50px;
+.card:hover{ 
+    transition: all .5s ease-in-out;
+    transform: scale(1.1); 
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.4);
 }
-#gbutton{
+#title{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:    ellipsis;
+    margin-left: 12px;
+    font-size: 18px; /* Looks bad, need a fix*/
+    height: 20px;
+}
+.addbutton{
     border: none;
     outline: 0;
     padding: 12px;
@@ -59,11 +66,17 @@ body{
     width: 100%;
     font-size: 18px;
 }
-#gbutton:hover {
+.addbutton:hover {
     transition: .2s ease-in-out;
     opacity: 0.7;
 }
-
+.gbutton{
+    border: none;
+    outline: 0;
+    background-color: transparent;
+    float: right;
+    padding-right: 10%;
+}
 
 
 

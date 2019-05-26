@@ -33076,7 +33076,7 @@ const dataOut = malScraper.getSeason(yyyy,season).then(function cardCreator(data
                             </a>
                             <p id="title" >${obj[i]['title']}</p>
                             
-                            <button id="gbutton">Add</button>
+                            <button class="addbutton" id="${obj[i]['title']}">Add</button>
                         </div>
                     </div>`;
             }
