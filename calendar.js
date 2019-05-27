@@ -8,7 +8,7 @@ var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/
 
 // Authorization scopes required by the API; multiple scopes can be
 // included, separated by spaces.
-var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
+var SCOPES = "https://www.googleapis.com/auth/calendar.events";
 
 var authorizeButton = document.getElementById('authorize_button');
 var signoutButton = document.getElementById('signout_button');
@@ -51,7 +51,6 @@ function updateSigninStatus(isSignedIn) {
   if (isSignedIn) {
     authorizeButton.style.display = 'none';
     signoutButton.style.display = 'block';
-    listUpcomingEvents();
   } else {
     authorizeButton.style.display = 'block';
     signoutButton.style.display = 'none';
@@ -73,7 +72,28 @@ function handleSignoutClick(event) {
 }
 
 
-/*  set up a listener to all elements with class addbutton
-    get the id of pressed button and call addEvent function*/
-document.getElementsByClassName('addbutton').addEventListener("click",{handleEvent: function(event){ addEvent(this.id)}});
+/*creates event based on show title*/
+function addEvent(title){
+
+let event = {
+  'summary': title,
+  'description': 'New episode of'+ title,
+  'start': {
+    'dateTime': '2019-05-29T09:00:00-07:00',
+  },
+  'end': {
+    'dateTime': '2019-05-30T17:00:00-07:00',
+  },
+};
+
+let request = gapi.client.calendar.events.insert({
+  'calendarId': 'primary',
+  'resource': event
+});
+
+request.execute(function(event) {
+  console.log('Event created: ' + event.htmlLink);
+});
+
+}
 

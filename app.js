@@ -48,10 +48,11 @@ const dataOut = malScraper.getSeason(yyyy,season).then(function cardCreator(data
         let count = Object.keys(obj).length;
         //Filter by best rated shows.
         obj.sort((a, b) => (Number(a['members']) > Number(b['members'])) ? -1 : 1);
-        //console.log(obj[0])
+
+        
         //Iterate through the obj and create cards for html.
         for (let i= 0;i < count;i++) {
-            let day = obj[i]['releaseDate']; //figure out how to get day name
+            let day = new Intl.DateTimeFormat('en-US', {weekday:'long'}).format((new Date(obj[i]['releaseDate'])).getDay());
             if(obj[i]['score'] !== 'N/A'){
             html += `<div class="column">
                         <div class="card">
@@ -59,8 +60,9 @@ const dataOut = malScraper.getSeason(yyyy,season).then(function cardCreator(data
                             <img id="img" src="${obj[i]['picture']}">
                             </a>
                             <p id="title" >${obj[i]['title']}</p>
+                            <p>${day}</p>
                             
-                            <button class="addbutton" id="${obj[i]['title']}">Add</button>
+                            <button class="addbutton" id="${obj[i]['title']}" onClick="addEvent(this.id)">Add</button>
                         </div>
                     </div>`;
             }
@@ -69,6 +71,7 @@ const dataOut = malScraper.getSeason(yyyy,season).then(function cardCreator(data
         $(".container").append(html);
     }).catch((err) => console.log(err));
 });
+
 // CORS & CORB fix
 
 (function() {
@@ -87,11 +90,6 @@ const dataOut = malScraper.getSeason(yyyy,season).then(function cardCreator(data
         return open.apply(this, args);
     };
 })();
-//function to get days of releaseDates and save it to day
-//more code..
-
-/* later use day to set as the Google event insert,
-first need to get the previous part to work */
 
     
     
