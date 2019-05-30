@@ -74,26 +74,33 @@ function handleSignoutClick(event) {
 
 /*creates event based on show title*/
 function addEvent(title){
-
-let event = {
-  'summary': title,
-  'description': 'New episode of'+ title,
-  'start': {
-    'dateTime': '2019-05-29T09:00:00-07:00',
-  },
-  'end': {
-    'dateTime': '2019-05-30T17:00:00-07:00',
-  },
-};
-
-let request = gapi.client.calendar.events.insert({
-  'calendarId': 'primary',
-  'resource': event
-});
-
-request.execute(function(event) {
-  console.log('Event created: ' + event.htmlLink);
-});
-
+  let time = new Date (document.getElementById('time'));
+  let mm = new Date().getMonth();
+  let yyyy =  new Date().getFullYear();
+  let fullTime = `${yyyy}-${mm}-31`;
+  let hours = time.getHours();
+  let minutes = time.getMinutes();
+  let event = {
+    'summary': title,
+    'description': 'New episode of '+ title,
+    'start': {
+      'timeZone':'Asia/Tokyo',
+      'dateTime': `${fullTime}'T'${hours}':'${minutes}:00`,
+    },
+    'end': {
+      'timeZone':'Asia/Tokyo',
+      'dateTime': `${fullTime}'T'${hours}':'${minutes + 30}:00`,
+    },
+  };
+  
+  let request = gapi.client.calendar.events.insert({
+    'calendarId': 'primary',
+    'resource': event
+  });
+  
+  request.execute(function(event) {
+    alert('Event created: ' + event.htmlLink);
+  });
+  
 }
 

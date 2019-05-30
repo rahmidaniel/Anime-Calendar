@@ -48,20 +48,19 @@ const dataOut = malScraper.getSeason(yyyy,season).then(function cardCreator(data
         let count = Object.keys(obj).length;
         //Filter by best rated shows.
         obj.sort((a, b) => (Number(a['members']) > Number(b['members'])) ? -1 : 1);
-
-        
         //Iterate through the obj and create cards for html.
         for (let i= 0;i < count;i++) {
-            let day = new Intl.DateTimeFormat('en-US', {weekday:'long'}).format((new Date(obj[i]['releaseDate'])).getDay());
-            if(obj[i]['score'] !== 'N/A'){
+            let date = obj[i]['releaseDate'].slice(0,-6);
+            let day = new Intl.DateTimeFormat('en-US', {weekday:'long'} ).format(new Date(date));
+            if(obj[i]['score'] !== 'N/A' && date.length > 10){
             html += `<div class="column">
                         <div class="card">
                             <a id="link" href= "${obj[i]['link']}">
                             <img id="img" src="${obj[i]['picture']}">
                             </a>
                             <p id="title" >${obj[i]['title']}</p>
-                            <p>${day}</p>
-                            
+                            <p id="day">${day}</p>
+                            <p id="time" style="display: none;">${date}</p>
                             <button class="addbutton" id="${obj[i]['title']}" onClick="addEvent(this.id)">Add</button>
                         </div>
                     </div>`;
@@ -73,7 +72,6 @@ const dataOut = malScraper.getSeason(yyyy,season).then(function cardCreator(data
 });
 
 // CORS & CORB fix
-
 (function() {
     var cors_api_host = 'cors-anywhere.herokuapp.com';
     var cors_api_url = 'https://' + cors_api_host + '/';
@@ -90,6 +88,4 @@ const dataOut = malScraper.getSeason(yyyy,season).then(function cardCreator(data
         return open.apply(this, args);
     };
 })();
-
-    
     
