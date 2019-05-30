@@ -1,0 +1,21 @@
+{id: '9', name: 'bold blue', color: '#5484ed', index: '0
+
+{id: '1', name: 'blue', color: '#a4bdfc', index: '1'
+
+{id: '7', name: 'turquoise', color: '#46d6db', index: '2'
+
+{id: '2', name: 'green', color: '#7ae7bf', index: '3'
+
+{id: '10', name: 'bold green', color: '#51b749', index: '4'
+
+{id: '5', name: 'yellow', color: '#fbd75b', index: '5'
+
+{id: '6', name: 'orange', color: '#ffb878', index: '6
+
+{id: '4', name: 'red', color: '#ff887c', index: '7'
+
+{id: '11', name: 'bold red', color: '#dc2127', index: '8'
+
+{id: '3', name: 'purple', color: '#dbadff', index: '9'
+
+{id: '8', name: 'gray', color: '#e1e1e1', index: '10'

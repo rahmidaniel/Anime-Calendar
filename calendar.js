@@ -74,22 +74,57 @@ function handleSignoutClick(event) {
 
 /*creates event based on show title*/
 function addEvent(title){
-  let time = new Date (document.getElementById('time'));
-  let mm = new Date().getMonth();
+  title =  title.split(','); //Create array to seperate time and title
+  let time = title[1]; //[0] is title, [1] is time
+  time = time.slice(0,6) + ',' + time.slice(6); //Insert ',' to get right time format
+  time = new Date(time);
+
+  function ymd (){
+    let curr = new Date 
+    let week = []
+    for (let i = 1; i <= 7; i++) {
+      let first = curr.getDate() - curr.getDay() + i 
+      let day = new Date(curr.setDate(first)).toISOString().slice(0, 10)
+    week.push(day)
+  }
+  }
+  //below is test only
+  let mm = new Date().getMonth() + 1;
   let yyyy =  new Date().getFullYear();
   let fullTime = `${yyyy}-${mm}-31`;
+  //until this
   let hours = time.getHours();
   let minutes = time.getMinutes();
+  console.log(`${fullTime}T${hours}:${minutes}:00+09:00`)
+  console.log(`${fullTime}T${hourAndMin(hours,minutes)}+09:00`)
+  //Handle 30 min additions
+  function hourAndMin(h, m){
+    //have to fix 24 hour mark to add to day
+    if (m + 30 > 60 ){ 
+      h ++;
+      m = (m+30)-60;
+      console.log(h, m);
+      return `${h}:${m}:00`;
+    } if (m + 30 === 60){
+      h ++;
+      m = '00';
+      return `${h}:${m}:00`;
+    } else {
+      return `${h}:${m+30}:00`;
+    }
+  }
+
   let event = {
-    'summary': title,
-    'description': 'New episode of '+ title,
+    'summary': title[0],
+    'colorId': '2',
+    'description': 'New episode of '+ title[0],
     'start': {
       'timeZone':'Asia/Tokyo',
-      'dateTime': `${fullTime}'T'${hours}':'${minutes}:00`,
+      'dateTime': `${fullTime}T${hours}:${minutes}:00+09:00`,
     },
     'end': {
       'timeZone':'Asia/Tokyo',
-      'dateTime': `${fullTime}'T'${hours}':'${minutes + 30}:00`,
+      'dateTime': `${fullTime}T${hourAndMin(hours,minutes)}+09:00`,
     },
   };
   

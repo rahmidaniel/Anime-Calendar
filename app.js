@@ -50,8 +50,9 @@ const dataOut = malScraper.getSeason(yyyy,season).then(function cardCreator(data
         obj.sort((a, b) => (Number(a['members']) > Number(b['members'])) ? -1 : 1);
         //Iterate through the obj and create cards for html.
         for (let i= 0;i < count;i++) {
-            let date = obj[i]['releaseDate'].slice(0,-6);
+            let date = obj[i]['releaseDate'].slice(0,-6).replace(/,/gi,'');
             let day = new Intl.DateTimeFormat('en-US', {weekday:'long'} ).format(new Date(date));
+            let dateTitle = [obj[i]['title'],date]
             if(obj[i]['score'] !== 'N/A' && date.length > 10){
             html += `<div class="column">
                         <div class="card">
@@ -61,7 +62,7 @@ const dataOut = malScraper.getSeason(yyyy,season).then(function cardCreator(data
                             <p id="title" >${obj[i]['title']}</p>
                             <p id="day">${day}</p>
                             <p id="time" style="display: none;">${date}</p>
-                            <button class="addbutton" id="${obj[i]['title']}" onClick="addEvent(this.id)">Add</button>
+                            <button class="addbutton" id="${dateTitle}" onClick="addEvent(this.id)">Add</button>
                         </div>
                     </div>`;
             }
