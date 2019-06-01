@@ -33024,24 +33024,24 @@ let yyyy = time.getFullYear();
 
 function currentSeason(month){
     switch(month) {
-        case 12:
         case 1:
         case 2:
+        case 3:
             return 'winter';
         break;
-        case 3:
         case 4:
         case 5:
+        case 6:
             return 'spring';
         break;
-        case 6:
         case 7:
         case 8:
+        case 9:
             return 'summer';
         break;
-        case 9:
         case 10: 
         case 11:
+        case 12:
             return 'fall';
         break;
     }
@@ -33076,7 +33076,7 @@ const dataOut = malScraper.getSeason(yyyy,season).then(function cardCreator(data
                             <img id="img" src="${obj[i]['picture']}">
                             </a>
                             <p id="title" >${obj[i]['title']}</p>
-                            <p id="day">${day}</p>
+                            <p id="day">${day}s</p>
                             <p id="time" style="display: none;">${date}</p>
                             <button class="addbutton" id="${dateTitle}" onClick="addEvent(this.id)">Add</button>
                         </div>
