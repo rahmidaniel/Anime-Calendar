@@ -6,7 +6,7 @@ body{
     margin: 0;
 }
 #background{
-    background-image: url("img/background.jpg");
+    background-image: url("img/light_background.jpg");
     background-repeat: no-repeat;
     background-position: center;
 }
