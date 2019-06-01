@@ -72,34 +72,37 @@ function handleSignoutClick(event) {
 }
 
 
-/*creates event based on show title*/
+/* Creates event based on show title. */
 function addEvent(title){
   title =  title.split(','); //Create array to seperate time and title
   let time = title[1]; //[0] is title, [1] is time
   time = time.slice(0,6) + ',' + time.slice(6); //Insert ',' to get right time format
   time = new Date(time);
-
-  function ymd (){
-    let curr = new Date 
-    let week = []
-    for (let i = 1; i <= 7; i++) {
-      let first = curr.getDate() - curr.getDay() + i 
-      let day = new Date(curr.setDate(first)).toISOString().slice(0, 10)
-    week.push(day)
+  /** 
+   * Get dates of current week and store it in an array. 
+   */
+  let curr = new Date(); 
+  let week = [];
+  for (let i = 1; i <= 7; i++) {
+    let first = curr.getDate() - curr.getDay() + i; 
+    let day = new Date(curr.setDate(first)).toISOString().slice(0, 10);
+    week.push(day);
   }
-  }
-  //below is test only
-  let mm = new Date().getMonth() + 1;
-  let yyyy =  new Date().getFullYear();
-  let fullTime = `${yyyy}-${mm}-31`;
-  //until this
+  /**
+   *  Use what day it was premiered on to get this weeks matching day.
+   */
+  let premiereDate = new Intl.DateTimeFormat('en-US', {weekday:'long'} ).format(new Date(title[1])); 
+  let yearMonthDay = week.find(function (element){
+    return new Intl.DateTimeFormat('en-US', {weekday:'long'} ).format(new Date(element)) === premiereDate;
+  });
+  /**
+   *  Gets hour and minute of broadcast, => start of event, +30 min end of event.
+   */
   let hours = time.getHours();
   let minutes = time.getMinutes();
-  console.log(`${fullTime}T${hours}:${minutes}:00+09:00`)
-  console.log(`${fullTime}T${hourAndMin(hours,minutes)}+09:00`)
   //Handle 30 min additions
   function hourAndMin(h, m){
-    //have to fix 24 hour mark to add to day
+    //have to fix 24 hour mark to add to day !!!
     if (m + 30 > 60 ){ 
       h ++;
       m = (m+30)-60;
@@ -113,18 +116,16 @@ function addEvent(title){
       return `${h}:${m+30}:00`;
     }
   }
-
+  /* Creates the Google Calendar event. */
   let event = {
     'summary': title[0],
     'colorId': '2',
     'description': 'New episode of '+ title[0],
     'start': {
-      'timeZone':'Asia/Tokyo',
-      'dateTime': `${fullTime}T${hours}:${minutes}:00+09:00`,
+      'dateTime': `${yearMonthDay}T${hours}:${minutes}:00+09:00`,
     },
     'end': {
-      'timeZone':'Asia/Tokyo',
-      'dateTime': `${fullTime}T${hourAndMin(hours,minutes)}+09:00`,
+      'dateTime': `${yearMonthDay}T${hourAndMin(hours,minutes)}+09:00`,
     },
   };
   
@@ -132,9 +133,14 @@ function addEvent(title){
     'calendarId': 'primary',
     'resource': event
   });
-  
+  //Have to get users to sign in first or promt them to sign in !!
+  //Instead of alerts do modals.
   request.execute(function(event) {
-    alert('Event created: ' + event.htmlLink);
+    if (event.htmlLink === undefined){
+      alert('Please sign in with Google first.')
+    } else {
+      alert(`Event created in your Google Calendar on ${premiereDate}s \nTitled ${title[0]} \nfor x weeks.`);
+    }
   });
   
 }
