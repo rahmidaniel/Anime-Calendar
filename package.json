@@ -11,11 +11,11 @@
   "author": "Daniel Rahmi",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "browserify": "^16.2.3",
     "cheerio": "^1.0.0-rc.3",
     "jquery": "^3.4.1",
-    "mal-scraper": "^2.6.1"
+    "mal-scraper": "^2.6.2"
   },
   "devDependencies": {
     "beefy": "^2.1.8"
