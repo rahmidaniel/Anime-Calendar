@@ -7,13 +7,9 @@ body{
 }
 .header{
     text-align: center;
-    color: darkgrey; 
-}
-a:link, a:visited{
-    color: darkgray;
-}
-a:hover, a:active{
-    color: grey;
+    background-color: transparent;
+    color: darkgrey;
+
 }
 #background{
     background-image: url("img/light_background.jpg");
