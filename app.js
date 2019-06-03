@@ -52,7 +52,7 @@ const dataOut = malScraper.getSeason(yyyy,season).then(function cardCreator(data
         for (let i= 0;i < count;i++) {
             let date = obj[i]['releaseDate'].slice(0,-6).replace(/,/gi,'');
             let day = new Intl.DateTimeFormat('en-US', {weekday:'long'} ).format(new Date(date));
-            let dateTitle = [obj[i]['title'],date]
+            let dateTitle = [obj[i]['title'],date,obj[i]['nbEp']]
             if(obj[i]['score'] !== 'N/A' && date.length > 10){
             html += `<div class="column">
                         <div class="card">
