@@ -78,6 +78,7 @@ function addEvent(title){
   let time = title[1]; //[0] is title, [1] is time
   time = time.slice(0,6) + ',' + time.slice(6); //Insert ',' to get right time format
   time = new Date(time);
+  let nbEp = parseInt(title[2]);
   /** 
    * Get dates of current week and store it in an array. 
    */
@@ -92,9 +93,30 @@ function addEvent(title){
    *  Use what day it was premiered on to get this weeks matching day.
    */
   let premiereDate = new Intl.DateTimeFormat('en-US', {weekday:'long'} ).format(new Date(title[1])); 
-  let yearMonthDay = week.find(function (element){
+  let initDate = week.find(function (element){
     return new Intl.DateTimeFormat('en-US', {weekday:'long'} ).format(new Date(element)) === premiereDate;
   });
+  let endDate = function () {
+    if(title[2] !== '?'){
+      let timeDiff = Math.abs(time.getTime()-new Date().getTime());
+      let dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+      let epsLeft = nbEp * 7 - dayDiff
+      Date.prototype.addDays = function(days){
+        let date = new Date(this.valueOf());
+        date.setDate(date.getDate() + days);
+        return date;
+      }
+      return new Date(initDate).addDays(epsLeft).toISOString().slice(0,10);
+    } if(title[2] === '?') {
+      Date.prototype.addDays = function(days){
+        let date = new Date(this.valueOf());
+        date.setDate(date.getDate() + days);
+        return date;
+      }
+      return new Date(initDate).addDays(7).toISOString().slice(0,10);
+    }
+  }
+  console.log(endDate());
   /**
    *  Gets hour and minute of broadcast, => start of event, +30 min end of event.
    */
@@ -116,16 +138,20 @@ function addEvent(title){
       return `${h}:${m+30}:00`;
     }
   }
+
+  let timeDiff = Math.abs(time.getTime()-new Date().getTime());
+  let dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24 * 7));
+  let epsLeft = nbEp - dayDiff;
   /* Creates the Google Calendar event. */
   let event = {
     'summary': title[0],
     'colorId': '2',
     'description': 'New episode of '+ title[0],
     'start': {
-      'dateTime': `${yearMonthDay}T${hours}:${minutes}:00+09:00`,
+      'dateTime': `${initDate}T${hours}:${minutes}:00+09:00`,
     },
     'end': {
-      'dateTime': `${yearMonthDay}T${hourAndMin(hours,minutes)}+09:00`,
+      'dateTime': `${initDate}T${hourAndMin(hours,minutes)}+09:00`,
     },
   };
   
@@ -139,7 +165,7 @@ function addEvent(title){
     if (event.htmlLink === undefined){
       alert('Please sign in with Google first.')
     } else {
-      alert(`Event created in your Google Calendar on ${premiereDate}s \nTitled ${title[0]} \nfor x weeks.`);
+      alert(`Event created in your Google Calendar on ${premiereDate}s \nTitled ${title[0]} \nfor ${epsLeft + 1} weeks.`);
     }
   });
   
