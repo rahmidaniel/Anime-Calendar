@@ -100,20 +100,20 @@ function addEvent(title){
     if(title[2] !== '?'){
       let timeDiff = Math.abs(time.getTime()-new Date().getTime());
       let dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-      let epsLeft = nbEp * 7 - dayDiff
+      let timeLeft = nbEp * 7 - dayDiff + 1;
       Date.prototype.addDays = function(days){
         let date = new Date(this.valueOf());
         date.setDate(date.getDate() + days);
         return date;
       }
-      return new Date(initDate).addDays(epsLeft).toISOString().slice(0,10);
+      return new Date(initDate).addDays(timeLeft).toISOString().slice(0,10);
     } if(title[2] === '?') {
       Date.prototype.addDays = function(days){
         let date = new Date(this.valueOf());
         date.setDate(date.getDate() + days);
         return date;
       }
-      return new Date(initDate).addDays(7).toISOString().slice(0,10);
+      return new Date(initDate).addDays(8*7+1).toISOString().slice(0,10); //8 weeks
     }
   }
   console.log(endDate());
@@ -148,24 +148,28 @@ function addEvent(title){
     'colorId': '2',
     'description': 'New episode of '+ title[0],
     'start': {
-      'dateTime': `${initDate}T${hours}:${minutes}:00+09:00`,
+      'dateTime': `${initDate}T${hours}:${minutes}:00`,
+      'timeZone': 'Asia/Tokyo'
     },
     'end': {
-      'dateTime': `${initDate}T${hourAndMin(hours,minutes)}+09:00`,
+      'dateTime': `${initDate}T${hourAndMin(hours,minutes)}`,
+      'timeZone': 'Asia/Tokyo'
     },
+    'recurrence': [
+      `RRULE:FREQ=WEEKLY;UNTIL=${endDate().replace(/-/gi,'')}`
+    ],
   };
   
   let request = gapi.client.calendar.events.insert({
     'calendarId': 'primary',
     'resource': event
   });
-  //Have to get users to sign in first or promt them to sign in !!
   //Instead of alerts do modals.
   request.execute(function(event) {
     if (event.htmlLink === undefined){
       alert('Please sign in with Google first.')
     } else {
-      alert(`Event created in your Google Calendar on ${premiereDate}s \nTitled ${title[0]} \nfor ${epsLeft + 1} weeks.`);
+      alert(`Event created in your Google Calendar on ${premiereDate}s \nTitled ${title[0]} \nfor ${epsLeft} weeks.`);
     }
   });
   
