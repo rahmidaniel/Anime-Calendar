@@ -169,7 +169,7 @@ function addEvent(title){
     if (event.htmlLink === undefined){
       alert('Please sign in with Google first.')
     } else {
-      if (epsLeft !== NaN){
+      if (title[2] !== '?' && epsLeft > 1){
         alert(`Event created in your Google Calendar on ${premiereDate}s (JST) \nTitled ${title[0]} \nfor ${epsLeft} weeks.`);
       } else {
         alert(`Event created in your Google Calendar on ${premiereDate}s (JST) \nTitled ${title[0]} \nfor 8 weeks.`);
