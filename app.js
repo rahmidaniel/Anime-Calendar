@@ -60,7 +60,7 @@ const dataOut = malScraper.getSeason(yyyy,season).then(function cardCreator(data
                             <img id="img" src="${obj[i]['picture']}">
                             </a>
                             <p id="title" >${obj[i]['title']}</p>
-                            <p id="day">${day}s</p>
+                            <p id="day">${day}s (JST)</p>
                             <p id="time" style="display: none;">${date}</p>
                             <button class="addbutton" id="${dateTitle}" onClick="addEvent(this.id)">Add</button>
                         </div>
