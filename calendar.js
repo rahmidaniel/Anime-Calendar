@@ -169,7 +169,11 @@ function addEvent(title){
     if (event.htmlLink === undefined){
       alert('Please sign in with Google first.')
     } else {
-      alert(`Event created in your Google Calendar on ${premiereDate}s \nTitled ${title[0]} \nfor ${epsLeft} weeks.`);
+      if (epsLeft !== NaN){
+        alert(`Event created in your Google Calendar on ${premiereDate}s (JST) \nTitled ${title[0]} \nfor ${epsLeft} weeks.`);
+      } else {
+        alert(`Event created in your Google Calendar on ${premiereDate}s (JST) \nTitled ${title[0]} \nfor 8 weeks.`);
+      }
     }
   });
   
