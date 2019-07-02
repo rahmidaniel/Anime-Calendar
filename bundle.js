@@ -33066,6 +33066,7 @@ const dataOut = malScraper.getSeason(yyyy,season).then(function cardCreator(data
         obj.sort((a, b) => (Number(a['members']) > Number(b['members'])) ? -1 : 1);
         //Iterate through the obj and create cards for html.
         for (let i= 0;i < count;i++) {
+            if (obj[i]['releaseDate'].length === 24){
             let date = obj[i]['releaseDate'].slice(0,-6).replace(/,/gi,'');
             let day = new Intl.DateTimeFormat('en-US', {weekday:'long'} ).format(new Date(date));
             let dateTitle = [obj[i]['title'],date,obj[i]['nbEp']]
@@ -33081,7 +33082,7 @@ const dataOut = malScraper.getSeason(yyyy,season).then(function cardCreator(data
                             <button class="addbutton" id="${dateTitle}" onClick="addEvent(this.id)">Add</button>
                         </div>
                     </div>`;
-            }
+            }}
         }
         //console.log(html.length); // Remove '//' to test
         $(".container").append(html);
