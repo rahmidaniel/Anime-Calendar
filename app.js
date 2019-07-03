@@ -46,15 +46,15 @@ const dataOut = malScraper.getSeason(yyyy,season).then(function cardCreator(data
         let obj = data['TV'];
         let html = "";
         let count = Object.keys(obj).length;
-        //Filter by best rated shows.
+        //Filter by most members.
         obj.sort((a, b) => (Number(a['members']) > Number(b['members'])) ? -1 : 1);
         //Iterate through the obj and create cards for html.
         for (let i= 0;i < count;i++) {
-            if (obj[i]['releaseDate'].length === 24){
+            if (obj[i]['releaseDate'].length === 24){ //If it has '(JST)' at the end.
             let date = obj[i]['releaseDate'].slice(0,-6).replace(/,/gi,'');
             let day = new Intl.DateTimeFormat('en-US', {weekday:'long'} ).format(new Date(date));
             let dateTitle = [obj[i]['title'],date,obj[i]['nbEp']]
-            if(obj[i]['score'] !== 'N/A' && date.length > 10){
+            if((obj[i]['score'] !== 'N/A' || obj[i]['members']>30000) && obj[i]['members']>3500){ //Filter by either already rated or popular enough shows (ommit low members shows).
             html += `<div class="column">
                         <div class="card">
                             <a id="link" href= "${obj[i]['link']}">
@@ -66,7 +66,26 @@ const dataOut = malScraper.getSeason(yyyy,season).then(function cardCreator(data
                             <button class="addbutton" id="${dateTitle}" onClick="addEvent(this.id)">Add</button>
                         </div>
                     </div>`;
-            }}
+                }
+            } if (obj[i]['releaseDate'].length > 11 && obj[i]['releaseDate'].length != 24){ //If it doesn't have '(JST)' at the end.
+            let date = obj[i]['releaseDate'].replace(/,/gi,'');
+            let day = new Intl.DateTimeFormat('en-US', {weekday:'long'} ).format(new Date(date));
+            let dateTitle = [obj[i]['title'],date,obj[i]['nbEp']]
+            if((obj[i]['score'] !== 'N/A' || obj[i]['members']>30000) && obj[i]['members']>3500){ //Filter by either already rated or popular enough shows (ommit low members shows).
+            html += `<div class="column">
+                        <div class="card">
+                            <a id="link" href= "${obj[i]['link']}">
+                            <img id="img" src="${obj[i]['picture']}">
+                            </a>
+                            <p id="title" >${obj[i]['title']}</p>
+                            <p id="day">${day}s (JST)</p>
+                            <p>${obj[i]['members']}</p>
+                            <p id="time" style="display: none;">${date}</p>
+                            <button class="addbutton" id="${dateTitle}" onClick="addEvent(this.id)">Add</button>
+                        </div>
+                    </div>`;
+                }
+            }
         }
         //console.log(html.length); // Remove '//' to test
         $(".container").append(html);
