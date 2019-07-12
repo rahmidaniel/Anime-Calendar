@@ -113,7 +113,7 @@ function addEvent(title){
         date.setDate(date.getDate() + days);
         return date;
       }
-      return new Date(initDate).addDays(8*7+1).toISOString().slice(0,10); //8 weeks
+      return new Date(initDate).addDays(12*7+1).toISOString().slice(0,10); //12 weeks
     }
   }
   console.log(endDate());
@@ -124,21 +124,36 @@ function addEvent(title){
   let minutes = time.getMinutes();
   //Handle 30 min additions
   function hourAndMin(h, m){
-    //have to fix 24 hour mark to add to day !!!
-    if (m + 30 > 60 ){ 
+    if (m + 30 > 60 ){
       h ++;
       m = (m+30)-60;
       console.log(h, m);
       return `${h}:${m}:00`;
     } if (m + 30 === 60){
+      if (h === 23) {
+        h = '00';
+        m = '00';
+        console.log(`${h}:${m}:00`)
+        return `${h}:${m}:00`;
+      } else {
       h ++;
       m = '00';
+      console.log(`${h}:${m}:00`)
       return `${h}:${m}:00`;
+      }
     } else {
       return `${h}:${m+30}:00`;
     }
   }
 
+  // Function to check if the show ends the following day
+  let initDateFunction = function(midnight){
+    if (midnight === '00:00:00') {
+      return week[week.indexOf(initDate)+1];
+    } else {
+      return initDate;
+    }
+  }
   let timeDiff = Math.abs(time.getTime()-new Date().getTime());
   let dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24 * 7));
   let epsLeft = nbEp - dayDiff;
@@ -152,7 +167,7 @@ function addEvent(title){
       'timeZone': 'Asia/Tokyo'
     },
     'end': {
-      'dateTime': `${initDate}T${hourAndMin(hours,minutes)}`,
+      'dateTime': `${initDateFunction(hourAndMin(hours,minutes))}T${hourAndMin(hours,minutes)}`,
       'timeZone': 'Asia/Tokyo'
     },
     'recurrence': [
@@ -172,7 +187,7 @@ function addEvent(title){
       if (title[2] !== '?' && epsLeft > 1){
         alert(`Event created in your Google Calendar on ${premiereDate}s (JST) \nTitled ${title[0]} \nfor ${epsLeft} weeks.`);
       } else {
-        alert(`Event created in your Google Calendar on ${premiereDate}s (JST) \nTitled ${title[0]} \nfor 8 weeks.`);
+        alert(`Event created in your Google Calendar on ${premiereDate}s (JST) \nTitled ${title[0]} \nfor 12 weeks.`);
       }
     }
   });
